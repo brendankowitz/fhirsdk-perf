@@ -12,29 +12,8 @@ namespace Common
   ""id"": ""example"",
   ""text"": {
     ""status"": ""generated"",
-    ""div"": ""<div xmlns=\""http://www.w3.org/1999/xhtml\"">
-      <table>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td>Peter James Chalmers</td>
-          </tr>
-          <tr>
-            <td>Address</td>
-            <td>534 Erewhon, Pleasantville, Vic, 3999</td>
-          </tr>
-          <tr>
-            <td>Contacts</td>
-            <td>Home: unknown. Work: (03) 5555 6473</td>
-          </tr>
-          <tr>
-            <td>Id</td>
-            <td>MRN: 12345 (Acme Healthcare)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>""
-  },
+    ""div"": ""<div xmlns=\""http://www.w3.org/1999/xhtml\"">      <table>        <tbody>          <tr>            <td>Name</td>            <td>Peter James Chalmers</td>          </tr>          <tr>            <td>Address</td>            <td>534 Erewhon, Pleasantville, Vic, 3999</td>          </tr>          <tr>            <td>Contacts</td>            <td>Home: unknown. Work: (03) 5555 6473</td>          </tr>          <tr>            <td>Id</td>            <td>MRN: 12345 (Acme Healthcare)</td>          </tr>        </tbody>      </table>    </div>""
+    },
   ""identifier"": [
     {
       ""use"": ""usual"",

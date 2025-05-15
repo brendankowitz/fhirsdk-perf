@@ -21,6 +21,8 @@ namespace FirelySdk5114.Benchmark
         private Patient _patient;
         private Bundle _bundle;
         private readonly ITypedElement _patientEl;
+        private readonly FhirJsonPocoDeserializer _jsonPocoParser;
+        private readonly FhirJsonPocoDeserializer _jsonPocoParserExpress;
 
         public FirelySdk5114JsonBenchmark()
         {
@@ -31,6 +33,12 @@ namespace FirelySdk5114.Benchmark
                 PermissiveParsing = true,
             });
             _jsonSerializer = new FhirJsonSerializer();
+
+            _jsonPocoParser = new FhirJsonPocoDeserializer();
+            _jsonPocoParserExpress = new FhirJsonPocoDeserializer(new FhirJsonPocoDeserializerSettings(){
+                Validator = null, // don't perform any validation during parsing - express path
+            });
+
             _patientJson = TestData.GetPatientJson();
             _patientBundleJson = TestData.GetLargePatientBundle();
 
@@ -63,6 +71,30 @@ namespace FirelySdk5114.Benchmark
         public string SerializeBundle()
         {
             return _jsonSerializer.SerializeToString(_bundle);
+        }
+
+        [Benchmark]
+        public Patient DeserializePatientPoco()
+        {
+            return _jsonPocoParser.DeserializeResource(_patientJson) as Patient;
+        }
+
+        [Benchmark]
+        public Bundle DeserializeBundlePoco()
+        {
+            return _jsonPocoParser.DeserializeResource(_patientBundleJson) as Bundle;
+        }
+
+        [Benchmark]
+        public Patient DeserializePatientPocoExpress()
+        {
+            return _jsonPocoParserExpress.DeserializeResource(_patientJson) as Patient;
+        }
+
+        [Benchmark]
+        public Bundle DeserializeBundlePocoExpress()
+        {
+            return _jsonPocoParserExpress.DeserializeResource(_patientBundleJson) as Bundle;
         }
 
         [Benchmark]
